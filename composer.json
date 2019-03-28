@@ -1,0 +1,27 @@
+{
+    "name": "livetyping/test-mk",
+    "description": "Test mk",
+    "license": "proprietary",
+    "type": "project",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1.0",
+        "yiisoft/yii2": "^2.0",
+        "yiisoft/yii2-bootstrap": "*",
+        "vlucas/phpdotenv": "^2.3",
+        "nesbot/carbon": "^1.27.0",
+        "frostealth/yii2-presenter": "~0.2.0",
+        "fzaninotto/faker": "^1.8"
+    },
+    "require-dev": {
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm-asset",
+            "bower-asset-library": "vendor/bower-asset"
+        }
+    }
+}

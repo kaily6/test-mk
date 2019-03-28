@@ -1,0 +1,37 @@
+version: '3'
+services:
+    nginx:
+        image: nginx:stable-alpine
+        container_name: mk-nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./docker/hosts:/etc/nginx/conf.d
+            - .:/var/www/mk
+            - ./docker/logs/nginx:/var/log/nginx
+        depends_on:
+            - php
+    php:
+        build: ./docker/images/php
+        container_name: mk-php
+        volumes:
+            - .:/var/www/mk
+        depends_on:
+            - postgres
+    postgres:
+      image: postgres
+      container_name: mk-postgres
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: secret
+        PGDATA: /data/postgres
+      volumes:
+        - ./docker/database/init.sql:/docker-entrypoint-initdb.d/10-init.sql
+        - mk-volume:/data/postgres
+
+      ports:
+        - "54324:5432"
+
+volumes:
+    mk-volume:
